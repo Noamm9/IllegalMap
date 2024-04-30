@@ -1,54 +1,6 @@
 # IllegalMap
 
-### Current Version: 5.4.2 for ChatTriggers 2.2.0 or higher
-Last Updated: March 14, 2024
-
-If you find a bug or want to make a suggestion, then join my Discord server: https://discord.gg/pykzREcAuZ
-**I will not consider adding features that are too cheaty, pointless or are just unrelated to this module.**
-
-<details>
-    <summary>Installation</summary>
-
-## Installation
-##### Prerequisites:
-    - Minecraft Java Edition
-    - Forge
-    - ChatTriggers
-
-1. Download the latest .zip folder from the "Releases" tab on the right hand side of the screen.<br>
-Click on the latest release, and download the file by clicking on "IllegalMap.X.X.X.zip".
-<img src="https://i.imgur.com/iEpBhVF.png" width=30%/>
-<img src="https://i.imgur.com/4wYewe0.png" width=30%/>
-
-2. Nagivate to the directory that the folder was installed to (Downloads folder by default) and right click the folder -> Extract All.
-<img src="https://i.imgur.com/4NLVpbp.png" width=30%/>
-<img src="https://i.imgur.com/rMT5NSG.png" width=30%/>
-
-3. Open the newly extracted folder (Not the .zip) and there will be another folder named "IllegalMap" directly inside of it.<br>
-The IllegalMap folder should contain several other folders, as well as an index.js and a metadata.json file.
-<img src="https://i.imgur.com/WXxLIuy.png" width=30%/>
-
-4. Copy the "IllegalMap" folder and navigate to your .minecraft/config/ChatTriggers/modules folder.<br>
-You can also run the command "/ct files" in-game and then open the "modules" folder and that will take you to the same place.<br>
-If you already have other CT modules installed, they should all appear here.
-
-5. Paste the "IllegalMap" folder you copied in step 3 into the modules folder.<br>
-If you already have IllegalMap installed, then you don't need to worry about deleting the old version. Just paste it and when you are asked what to do with the duplicate files, just select "Replace" and that will let you keep your old configs as well.
-
-6. Run "/ct load" in-game to refresh the ChatTriggers modules.<br>
-If Minecraft is not already running, then the module will be loaded automatically the next time you launch the game so you can just carry on.
-
-If you are having trouble installing the module, then please make sure you have read over the installation guide **THOROUGHLY** before coming to me for help.
-
-</details>
-<br>
-
-IllegalMap is a [ChatTriggers](https://www.chattriggers.com) module that scans each Dungeon to give extra information to the user, like which rooms and puzzles are in the dungeon and exactly how many secrets there are before the dungeon even starts.
-The map also shows the user other useful information like the total secrets, death penalties, crypts, mimic and the current score right underneath the map so that the user never needs to look at the tab list.
-IllegalMap can be used on its own as your primary dungeon map, with significantly more features than any other map currently.
-IllegalMap is highly customizable through the **/dmap** command.
-
-<img src="https://i.imgur.com/yMl9bRa.png">
+### Current Version: 5.4.2
 
 ## Dungeon Preview
 IllegalMap automatically scans the dungeon as soon as you enter it. After the dungeon has been fully scanned (And the chunks all loaded), it will stop scanning.
@@ -98,7 +50,6 @@ NOTE: This data is not sent anywhere. Only you have access to your own logs.
 - Show player usernames on map
   - Option to show player names whilst holding spirit leaps
   - Show player ranks on the map
-<img src="https://i.imgur.com/uji0Pyp.png">
 - Automatically notifies of new IllegalMap updates
 
 #### Score Calculator
@@ -110,8 +61,6 @@ NOTE: This data is not sent anywhere. Only you have access to your own logs.
 
 ##### Rooms
 - Show which room contains the mimic (Floor 6-7)
-<img src="https://i.imgur.com/dInXjX9.png" width=10%>
-
 - Show room names
 - Show room secrets
 - Darken unexplored rooms
