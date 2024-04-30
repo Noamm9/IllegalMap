@@ -76,10 +76,10 @@ const renderDungeonInfoUnderMap = () => {
     Renderer.translate(dmapData.map.x, dmapData.map.y)
     Renderer.scale(dmapData.map.scale, dmapData.map.scale)
     Renderer.translate(w / 2, h - mapCellSize*2.5 + mapCellSize*2)
-    Renderer.scale(0.6, 0.6)
+    Renderer.scale(1, 1)
     let w1 = Renderer.getStringWidth(DmapDungeon.mapLine1)
     let w2 = Renderer.getStringWidth(DmapDungeon.mapLine2)
-    Renderer.drawStringWithShadow(DmapDungeon.mapLine1, -w1 / 2, 0)
+    Renderer.drawStringWithShadow(DmapDungeon.mapLine1, -w1 / 2, 1.5)
     Renderer.drawStringWithShadow(DmapDungeon.mapLine2, -w2 / 2, 10)
     Renderer.retainTransforms(false)
 }

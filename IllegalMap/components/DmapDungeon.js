@@ -147,17 +147,31 @@ export default new class DmapDungeon {
             let ms = Math.ceil(secretsForMax*((40 - (Dungeon.isPaul ? 10 : 0) - (Dungeon.mimicKilled ? 2 : 0) - (Dungeon.crypts > 5 ? 5 : Dungeon.crypts) + (Dungeon.deathPenalty))/40))
 
             let totalSecrets = Dungeon.totalSecrets || this.dungeonMap.secrets
-            let dSecrets = `&7Secrets: &b${Dungeon.secretsFound}&8-&e${totalSecrets - Dungeon.secretsFound}&8-&c${totalSecrets}`
-            let dCrypts = "&7Crypts: " + (Dungeon.crypts >= 5 ? `&a${Dungeon.crypts}` : Dungeon.crypts > 0 ? `&e${Dungeon.crypts}` : `&c0`) + (Config.showTotalCrypts ? ` &8(${this.dungeonMap.crypts})` : "")
-            let dMimic = [6, 7].includes(Dungeon.floorNumber) ? ("&7Mimic: " + (Dungeon.mimicKilled ? "&a✔" : "&c✘")) : ""
+            let dSecrets = `&b${Dungeon.secretsFound}&r/&c${totalSecrets}`
+
+            if (100*(Dungeon.secretsFound/totalSecrets) <= 25) {
+                dSecrets = `&4${Dungeon.secretsFound}&r/&c${totalSecrets}`
+            }
+            else if (100*(Dungeon.secretsFound/totalSecrets <= 50)) {
+                dSecrets = `&e${Dungeon.secretsFound}&r/&c${totalSecrets}`
+            }
+            else if (100*(Dungeon.secretsFound/totalSecrets <= 100)) {
+                dSecrets = `&a${Dungeon.secretsFound}&r/&c${totalSecrets}`
+            }
+
+            
+            let dCrypts = (Dungeon.crypts >= 5 ? `&a${Dungeon.crypts}c` : Dungeon.crypts > 0 ? `&e${Dungeon.crypts}c` : `&c0c`) + (Config.showTotalCrypts ? ` &8(${this.dungeonMap.crypts})` : "")
+            let dMimic = [6, 7].includes(Dungeon.floorNumber) ? ((Dungeon.mimicKilled ? "&a✔" : "&c✘")) : ""
         
-            let minSecrets = "&7Min Secrets: " + (!this.dungeonMap.secrets && !Dungeon.minSecrets ? "&b?" : Dungeon.minSecrets ? `&e${Dungeon.minSecrets}` : `&a${ms}`)
-            let dDeaths = "&7Deaths: " + (Dungeon.deathPenalty < 0 ? `&c${Dungeon.deathPenalty}` : "&a0")
-            let dScore = "&7Score: " + (Dungeon.score >= 300 ? `&a${Dungeon.score}` : Dungeon.score >= 270 ? `&e${Dungeon.score}` : `&c${Dungeon.score}`)
-        
-            this.mapLine1 = `${dSecrets}    ${dCrypts}    ${dMimic}`.trim()
-            this.mapLine2 = `${minSecrets}    ${dDeaths}    ${dScore}`.trim()
+            let dDeaths = (Dungeon.deathPenalty < 0 ? `&c${Dungeon.deathPenalty} &7ඞ` : "&a0 &f:ඞ")
+            let dScore = (Dungeon.score >= 300 ? `&a${Dungeon.score}` : Dungeon.score >= 270 ? `&e${Dungeon.score}` : `&c${Dungeon.score}`)
+
+            this.mapLine1 = `${dScore}  ${dCrypts}  ${dMimic}   ${dSecrets}   ${dDeaths}`.trim()
+            this.mapLine2 = `  `
         }).setFps(4)
+
+
+
 
         // Update player visited rooms
         register("tick", () => {
