@@ -220,9 +220,9 @@ export default class Room {
         if (this.type == RoomTypes.UNKNOWN && !this.roofHeight) return new Color(65/255, 65/255, 65/255, 1)
 
         if (this.highlighted) color = colorShift(color, Color.YELLOW, 0.2)
-        if (!this.explored && Dungeon.time && Config.darkenUnexplored) color = color.darker().darker()
+        if (!this.explored && Dungeon.time && Config.darkenUnexplored) color = color.darker().darker().darker()
         // Give the room a red tint if it has the mimic
-        if (this.hasMimic) color = colorShift(color, Color.RED, 0.2)
+        if (this.hasMimic) color = colorShift(color, Color.RED, 0.1)
         return color
     }
 
@@ -263,7 +263,7 @@ export default class Room {
             if (this.type == RoomTypes.PUZZLE && this.secrets == 0) return Renderer.finishDraw()
             if ([RoomTypes.YELLOW, RoomTypes.FAIRY, RoomTypes.BLOOD, RoomTypes.ENTRANCE].includes(this.type)) return Renderer.finishDraw()
 
-            let textColor = "&7"
+            let textColor = "&8"
             if (this.checkmark == Checkmark.GREEN) textColor = "&2"
             if (this.checkmark == Checkmark.WHITE) textColor = "&f"
             const text = `${textColor}${this.secrets}`
@@ -283,8 +283,9 @@ export default class Room {
         const firstComponent = this.components[0]
         let [x, y] = getRoomPosition(...firstComponent)
         Renderer.translate(x-mapCellSize*1.3, y-mapCellSize*1.3)
-        Renderer.scale(0.6, 0.6)
-        Renderer.drawString(`&7${this.secrets}`, 0, 0)
+        Renderer.scale(0.9, 0.9)
+        if (this.secrets > 0) Renderer.drawString(`&f${this.secrets}`, 0, 0)
+        else Renderer.drawString(`&f`, 0, 0)
     }
 
     /**

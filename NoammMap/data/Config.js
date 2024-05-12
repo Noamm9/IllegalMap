@@ -12,9 +12,9 @@ import {
     @SliderProperty
 } from '../../Vigilance/index';
 
-const getModuleVersion = () => JSON.parse(FileLib.read("IllegalMap", "metadata.json")).version
+const getModuleVersion = () => JSON.parse(FileLib.read("NoammMap", "metadata.json")).version
 
-@Vigilant("IllegalMap", "IllegalMap", {
+@Vigilant("NoammMap", "§d§l§nNoamm§b§n§lMap",    {
     getCategoryComparator: () => (a, b) => {
         const categories = ["General", "Players", "Rooms", "Radar", "Credits"];
         return categories.indexOf(a.name) - categories.indexOf(b.name);
@@ -25,13 +25,13 @@ class Config {
         this.initialize(this)
         this.setCategoryDescription("General", 
             `
-            &6&l&nIllegalMap ${getModuleVersion()}
+            &d&l&nNoamm&b&n&lMap&r &f${getModuleVersion()}
 
 
             &bNote: An API key is required for some features. To set it, run &a/api new&b.
 
 
-            &7By UnclaimedBloom6
+            &eIllegalMap fork &6Made by: &dN&bo&da&bm&dm&b9&r
             `
         )
     }
@@ -42,17 +42,6 @@ class Config {
 
     // ---------------------------------------------------------------
     // General
-
-    @ButtonProperty({
-        name: "&3&lMy Discord Server",
-        description: "Join if you want to talk to me directly, report a bug or want to make a suggestion.",
-        category: "General",
-        placeholder: "Join"
-    })
-    MyDiscord() {
-        java.awt.Desktop.getDesktop().browse(new java.net.URI("https://discord.gg/pykzREcAuZ"))
-    }
-    // https://discord.gg/pykzREcAuZ
 
     @SwitchProperty({
         name: "&aMap Enabled",
@@ -75,7 +64,7 @@ class Config {
         description: "Change the background color and transparency of the map.",
         category: "General"
     })
-    backgroundColor = new Color(0, 0, 0, 179/255);
+    backgroundColor = new Color(0, 0, 0, 89/255);
 
     @SwitchProperty({
         name: "&aHide In Boss",
@@ -186,7 +175,7 @@ class Config {
         category: "General",
         subcategory: "Dungeon Info"
     })
-    dungeonInfoBackgroundColor = new Color(0, 0, 0, 179/255);
+    dungeonInfoBackgroundColor = new Color(0, 0, 0, 89/255);
 
     @SwitchProperty({
         name: "&8Show Crypts",
@@ -238,14 +227,6 @@ class Config {
         subcategory: "Dungeon Logging"
     })
     logDungeonChatInfo = false;
-
-    @SwitchProperty({
-        name: "&6Notify Updates",
-        description: "Automatically check for updates and notify you when there is a new version of IllegalMap available (Doesn't auto download).",
-        category: "General",
-        subcategory: "Updates"
-    })
-    notifyUpdates = true;
 
     @SwitchProperty({
         name: "&6Auto Fetch Rooms.json",
@@ -306,7 +287,7 @@ class Config {
         category: "Players",
         subcategory: "Run Overview"
     })
-    showPlayerPerformances = false;
+    showPlayerPerformances = true;
     
     // @SwitchProperty({
     //     name: "&cNotify of Room Skippers",
@@ -327,14 +308,14 @@ class Config {
     darkenUnexplored = true;
 
     @ColorProperty({
-        name: "&8Wither Door Color",
+        name: "&7Wither Door Color",
         description: "Changes the wither door color.",
         category: "Rooms",
-        subcategory: "Wither Doors"
+        subcategory: "Wither Door"
     })
     witherDoorColor = new Color(0, 0, 0, 1);
 
-    // Wither Door Esp
+    /* Wither Door Esp
     @SwitchProperty({
         name: "&8Wither Door Esp",
         description: "Draws a box around the next two wither/blood doors.\n&8- Suggested by epha & RestOps",
@@ -350,7 +331,7 @@ class Config {
         category: "Rooms",
         subcategory: "Wither Doors"
     })
-    witherDoorEspColor = new java.awt.Color(1, 0, 0, 1);
+    witherDoorEspColor = new java.awt.Color(1, 0, 0, 1);*/
 
     @SwitchProperty({
         name: "&dShow Rooms",
@@ -391,7 +372,7 @@ class Config {
         subcategory: "Checkmarks",
         options: ["Regular", "Vanilla"]
     })
-    checkmarkStyle = 0;
+    checkmarkStyle = 1;
 
     @SwitchProperty({
         name: "Center Checkmarks",
@@ -399,7 +380,7 @@ class Config {
         category: "Rooms",
         subcategory: "Checkmarks"
     })
-    centerCheckmarks = false;
+    centerCheckmarks = true;
 
     @SwitchProperty({
         name: "Numbers Instead",
@@ -431,118 +412,18 @@ class Config {
         category: "Rooms",
         subcategory: "Mimic"
     })
-    showMimic = true;
+    showMimic = false;
 
-    // ---------------------------------------------------------------
-    // Radar
 
-    // Star mob Esp
-    @SwitchProperty({
-        name: "&6Star Mob Esp",
-        description: "Draws a box around starred mobs and minibosses.",
-        category: "Radar",
-        subcategory: "Star Mob ESP"
-    })
-    starMobEsp = false;
-
-    // Star mob esp color
-    @ColorProperty({
-        name: "&6Star Mob Esp Color",
-        description: "The color of the box drawn around starred mobs.",
-        category: "Radar",
-        subcategory: "Star Mob ESP"
-    })
-    starMobEspColor = new java.awt.Color(0, 1, 0, 1);
-
-    @SwitchProperty({
-        name: "&bRadar",
-        description: "Shows the location of star mobs on the map.\n&aCan be toggled using the /star command if you only need it to find a lost mob.",
-        category: "Radar"
-    })
-    radar = false;
-
-    @SwitchProperty({
-        name: "&bStar Mob Border",
-        description: "Renders a small black border around starred mobs on the map.",
-        category: "Radar",
-        subcategory: "Star Mobs"
-    })
-    starMobBorder = true;
-
-    @SwitchProperty({
-        name: "&bMiniboss Colors",
-        description: "Changes the color of minibosses on the map.",
-        category: "Radar",
-        subcategory: "Star Mobs"
-    })
-    minibossColors = true;
-
-    @SwitchProperty({
-        name: "&eRadar Heads",
-        description: "Shows the mob's skin (like player icons) instead of a colored dot.",
-        category: "Radar",
-        subcategory: "Heads"
-    })
-    radarHeads = true;
-
-    
-    @PercentSliderProperty({
-        name: "&eRadar Head Scale",
-        description: "Size of the heads of starred mobs on the map.",
-        category: "Radar",
-        subcategory: "Heads"
-    })
-    radarHeadScale = 0.5;
-    
-    @SwitchProperty({
-        name: "&cRadar Heads Border",
-        description: "Display a border around star mobs on the map (Same as player heads).",
-        category: "Radar",
-        subcategory: "Border"
-    })
-    radarHeadsBorder = true;
-
-    @ColorProperty({
-        name: "&cRadar Heads Border Color",
-        description: "If border is enabled, change the color to make the star mobs look better or stick out more on the map.",
-        category: "Radar",
-        subcategory: "Border"
-    })
-    radarHeadsBorderColor = Color.BLACK
-    
     // Credits
 
     @ButtonProperty({
-        name: "&a&lTenios",
-        description: "First person to figure out how the actual score calculation worked and helped a bunch with room hashing idea and some other optimization.",
+        name: "&6&lUnclaimedBloom6",
+        description: "IllegalMap creator.",
         category: "Credits",
         placeholder: " "
     })
-    tenios() {};
-
-    @ButtonProperty({
-        name: "&2&lSoopyBoo32",
-        description: "Provided a tool which allowed me to measure the lag caused by the module.",
-        category: "Credits",
-        placeholder: " "
-    })
-    soopy() {};
-
-    @ButtonProperty({
-        name: "&5&lSquagward &8(CT Developer)",
-        description: "Fixed a memory leak caused by the game not disposing of the old map images properly.",
-        category: "Credits",
-        placeholder: " "
-    })
-    squagward() {};
-
-    @ButtonProperty({
-        name: "&f&lIcarusPhantom",
-        description: "Code for smooth RGB for the map border.",
-        category: "Credits",
-        placeholder: " "
-    })
-    icarus() {};
+    Bloom() {};
 
     @ButtonProperty({
         name: "&d&lChatTriggers Discord",
@@ -551,8 +432,6 @@ class Config {
         placeholder: " "
     })
     ctdiscord() {};
-
-
 
 }
 

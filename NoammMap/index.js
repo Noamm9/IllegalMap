@@ -4,23 +4,19 @@
 import Dungeon from "../BloomCore/dungeons/Dungeon"
 import { renderCenteredString, title } from "../BloomCore/utils/Utils"
 import Config from "./data/Config"
-import { componentToRealCoords, defaultMapSize, dmapData, getCore, getRgb, mapCellSize, realCoordToComponent, roomsJson, RoomTypes } from "./utils"
+import { componentToRealCoords, defaultMapSize, dmapData, getCore, getRgb, mapCellSize, realCoordToComponent, roomsJson, RoomTypes, gc, cc } from "./utils"
 
 import "./extra/DungeonLogger"
 import "./extra/ScoreMilestones"
 import "./extra/Mimic"
-import "./extra/StarMobStuff"
-import "./extra/WitherDoorEsp"
-import "./extra/UpdateChecker"
 import "./extra/FirstInstall"
 import "./extra/VisitedCommand"
 import "./extra/DungeonLoggerNew"
 import "./extra/DungeonViewer"
 import "./extra/NewRoomCommand"
-import { renderStarMobStuff } from "./extra/StarMobStuff"
 import DmapDungeon from "./components/DmapDungeon"
 
-const peekKey = new KeyBind("Peek Rooms", Keyboard.KEY_NONE, "IllegalMap")
+const peekKey = new KeyBind("Peek Rooms", Keyboard.KEY_NONE, "NoammMap")
 
 // Store the pre-calculated render related stuff to improve performance
 
@@ -187,7 +183,6 @@ const renderMapStuff = () => {
     renderDungeonMap()
     if (Config.mapBorder !== 0) renderMapBorder()
     renderCheckmarks()
-    renderStarMobStuff()
     renderRoomSecrets()
     renderRoomNames()
     renderPlayers()
@@ -265,3 +260,11 @@ register("scrolled", (mx, my, dir) => {
     else dmapData.dungeonInfo.scale -= 0.05
     dmapData.save()
 })
+
+cc("§e--------------------------");
+ChatLib.chat(gc(`NoammMap Loaded   &r`).replace(`NoammMap Loaded`, `§b&lNoamm&d&lMap &a&lLoaded`))
+cc("§e--------------------------");
+
+console.log("----------------------");
+console.log(" NoammMap Loaded");
+console.log("----------------------");

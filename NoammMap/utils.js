@@ -4,8 +4,10 @@ import PogObject from "../PogData/index"
 import request from "../requestV2"
 import Config from "./data/Config"
 
-export const prefix = "&8[&bMap&8]"
-export const dmapData = new PogObject("IllegalMap", {
+export const gc = (text) => ChatLib.getCenteredText(text) // getCentered
+export const cc = (text) => ChatLib.chat(gc(text)) // centerChat
+export const prefix = "&6&l[&b&lNoamm&d&lMap&6&l]&r"
+export const dmapData = new PogObject("NoammMap", {
     "firstTime": true,
     "uuid": null,
     "map": {
@@ -30,7 +32,7 @@ export const dmapData = new PogObject("IllegalMap", {
 
 export const mapCellSize = 5
 export const defaultMapSize = [125, 125] // cell size * (23 for the map cells + 2 for the border each side)
-export let roomsJson = JSON.parse(FileLib.read("IllegalMap", "data/rooms.json"))
+export let roomsJson = JSON.parse(FileLib.read("NoammMap", "data/rooms.json"))
 // Room data indexed by their roomIDs
 export const RoomMap = new Map(roomsJson.map(a => [a.roomID, a]))
 
@@ -43,7 +45,7 @@ if (Config.autoFetchRoomsFromGithub) {
             RoomMap.set(roomData.roomID, roomData)
         }
 
-        FileLib.write("IllegalMap", "data/rooms.json", JSON.stringify(roomsJson, null, 4))
+        FileLib.write("NoammMap", "data/rooms.json", JSON.stringify(roomsJson, null, 4))
     })
 }
 
@@ -177,7 +179,7 @@ export const getCore = (x, z) => {
     return hashCode(blockIds)
 }
 export const getClosestRoomCore = ([x, z]) => getRealCoords(getGridCoords([x, z]))
-export const getRoomsFile = () => JSON.parse(FileLib.read("IllegalMap", "data/rooms.json"))
+export const getRoomsFile = () => JSON.parse(FileLib.read("NoammMap", "data/rooms.json"))
 
 export const chunkLoaded = ([x, y, z]) => World.getWorld().func_175726_f(new BlockPoss(x, y, z)).func_177410_o()
 export const splitCoord = (str) => str.split(",").map(a => parseFloat(a))
@@ -308,7 +310,7 @@ export const RoomNameColorKeys = new Map([
     [RoomTypes.YELLOW, "&e"],
     [RoomTypes.TRAP, "&6"],
     [RoomTypes.BLOOD, "&4"],
-    [RoomTypes.FAIRY, "&d"],
+    [RoomTypes.FAIRY, "&b"],
     [RoomTypes.ENTRANCE, "&2"],
 ])
 
@@ -316,11 +318,11 @@ export const RoomColors = new Map([
     [RoomTypes.NORMAL, new Color(107/255, 58/255, 17/255, 1)],
     [RoomTypes.PUZZLE, new Color(117/255, 0/255, 133/255, 1)],
     [RoomTypes.BLOOD, new Color(255/255, 0/255, 0/255, 1)],
-    [RoomTypes.TRAP, new Color(216/255, 127/255, 51/255, 1)],
-    [RoomTypes.YELLOW, new Color(254/255, 223/255, 0/255, 1)],
-    [RoomTypes.FAIRY, new Color(224/255, 0/255, 255/255, 1)],
+    [RoomTypes.TRAP, new Color(255/255, 135/255, 0/255, 1)],
+    [RoomTypes.YELLOW, new Color(255/255, 255/255, 0/255, 1)],
+    [RoomTypes.FAIRY, new Color(0/255, 141/255, 255/255, 1)], //Blue
     [RoomTypes.ENTRANCE, new Color(20/255, 133/255, 0/255, 1)],
-    [RoomTypes.RARE, new Color(255/255, 203/255, 89/255, 1)],
+    [RoomTypes.RARE, new Color(255/255, 255/255, 255/255, 1)], //White
     [RoomTypes.UNKNOWN, new Color(255/255, 176/255, 31/255)]
 ])
 

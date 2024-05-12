@@ -58,7 +58,7 @@ export default new class DmapDungeon {
                     if ("doors" in room) return
                     room.doors = final
                     ChatLib.chat(`&aAdded doors for ${r.getName(true)}&a: &6${final}`)
-                    FileLib.write("IllegalMap", "data/rooms.json", JSON.stringify(roomsJson, null, 4))
+                    FileLib.write("NoammMap", "data/rooms.json", JSON.stringify(roomsJson, null, 4))
                     return
                 }
             })
@@ -163,7 +163,7 @@ export default new class DmapDungeon {
             let dCrypts = (Dungeon.crypts >= 5 ? `&a${Dungeon.crypts}c` : Dungeon.crypts > 0 ? `&e${Dungeon.crypts}c` : `&c0c`) + (Config.showTotalCrypts ? ` &8(${this.dungeonMap.crypts})` : "")
             let dMimic = [6, 7].includes(Dungeon.floorNumber) ? ((Dungeon.mimicKilled ? "&a✔" : "&c✘")) : ""
         
-            let dDeaths = (Dungeon.deathPenalty < 0 ? `&c${Dungeon.deathPenalty} &7ඞ` : "&a0 &f:ඞ")
+            let dDeaths = (Dungeon.deathPenalty < 0 ? `&c${Dungeon.deathPenalty} &4 ඞ` : "&a0 ඞ")
             let dScore = (Dungeon.score >= 300 ? `&a${Dungeon.score}` : Dungeon.score >= 270 ? `&e${Dungeon.score}` : `&c${Dungeon.score}`)
 
             this.mapLine1 = `${dScore}  ${dCrypts}  ${dMimic}   ${dSecrets}   ${dDeaths}`.trim()

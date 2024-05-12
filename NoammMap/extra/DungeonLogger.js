@@ -24,7 +24,7 @@ const convertToLog = (log) => {
     return log
 }
 
-const getLogs = () => JSON.parse(FileLib.read("IllegalMap", "data/dungeonLogs.json"))
+const getLogs = () => JSON.parse(FileLib.read("NoammMap", "data/dungeonLogs.json"))
 
 const addLog = (data) => {
     let logs = getLogs()
@@ -32,7 +32,7 @@ const addLog = (data) => {
         logs = defaultFile
     }
     logs.dungeons.push(data)
-    FileLib.write("IllegalMap", "data/dungeonLogs.json", JSON.stringify(logs))
+    FileLib.write("NoammMap", "data/dungeonLogs.json", JSON.stringify(logs))
 }
 
 register("tick", () => {
