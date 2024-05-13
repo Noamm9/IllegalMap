@@ -6,7 +6,7 @@ import Config from "./data/Config"
 
 export const gc = (text) => ChatLib.getCenteredText(text) // getCentered
 export const cc = (text) => ChatLib.chat(gc(text)) // centerChat
-export const prefix = "&6&l[&b&lNoamm&d&lMap&6&l]&r"
+export const prefix = "&6&l[&b&lN&d&lMap&6&l]&r"
 export const dmapData = new PogObject("NoammMap", {
     "firstTime": true,
     "uuid": null,
